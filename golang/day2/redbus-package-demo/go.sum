@@ -1,0 +1,4 @@
+github.com/poornima-prasad/go-utils v0.0.0-20240213074810-f2ef1617099a h1:pA7T4qw9m58P7E4rnsLlcBFDOP7ZcmdoMKeN34kyWfQ=
+github.com/poornima-prasad/go-utils v0.0.0-20240213074810-f2ef1617099a/go.mod h1:NbkQX8J6ezzYvAPaNtKjAioFdVWReW8hErIre+S0bEg=
+github.com/vinod-kayartaya/timeecho v0.0.0-20240212165433-d82c9261116e h1:y4CWr9aFml8lbAPJZWqG3SClZTPHk8OrX3b763BkrJA=
+github.com/vinod-kayartaya/timeecho v0.0.0-20240212165433-d82c9261116e/go.mod h1:Xbn+s/vgMRJo2dQqH9wHJX9FFX/WzDmknCv6kKx6K3M=
