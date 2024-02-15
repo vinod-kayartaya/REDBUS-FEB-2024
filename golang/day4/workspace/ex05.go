@@ -19,9 +19,6 @@ func gr2(ch chan string) {
 	}
 }
 
-
-
-
 func main() {
 	ch1 := make(chan string, 10)
 	ch2 := make(chan string, 10)
