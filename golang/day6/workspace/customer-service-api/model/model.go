@@ -6,3 +6,7 @@ type Customer struct {
 	City  string `json:"city"`
 	Email string `json:"email"`
 }
+
+type ErrorMessage struct {
+	Message string `json:"message"`
+}

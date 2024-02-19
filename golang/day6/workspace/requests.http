@@ -23,3 +23,16 @@ Accept: application/json
 GET /api/customers/2
 Host: localhost:7788
 Accept: application/json
+
+### add a new customer using post
+
+POST /api/customers
+Host: localhost:7788
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Kishore Kumar",
+    "city": "Vasco", 
+    "email": "kishore.kumar@xmpl.com"
+}
