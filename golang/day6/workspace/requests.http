@@ -20,7 +20,7 @@ Accept: application/json
 
 ###
 
-GET /api/customers/2
+GET /api/customers/4
 Host: localhost:7788
 Accept: application/json
 
@@ -36,3 +36,21 @@ Content-Type: application/json
     "city": "Vasco", 
     "email": "kishore.kumar@xmpl.com"
 }
+### update an existing customer (based on id)
+
+PUT /api/customers/4
+Host: localhost:7788
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Umesh Rao",
+  "city": "Bangalore",
+  "email": "umesh.rao@xmpl.com"
+}
+
+### delete an existing customer (based on id)
+
+DELETE /api/customers/4
+Host: localhost:7788
+Accept: application/json
