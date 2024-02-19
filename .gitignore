@@ -22,7 +22,9 @@ go.work
 
 **/.DS_Store
 
-**/day6
 **/day7
 
+
+**/day*/Readme.html
+**/day*/Readme.pdf
 **/tmp*.go

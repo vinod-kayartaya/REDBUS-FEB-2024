@@ -1,0 +1,25 @@
+http://localhost:7788
+
+### RFC2616 format
+
+GET /
+Host: localhost:7788
+Accept: text/html
+
+###
+
+GET /
+Host: 172.16.10.68:7788
+Accept: text/html
+
+###
+
+GET /api/customers
+Host: localhost:7788
+Accept: application/json
+
+###
+
+GET /api/customers/2
+Host: localhost:7788
+Accept: application/json
