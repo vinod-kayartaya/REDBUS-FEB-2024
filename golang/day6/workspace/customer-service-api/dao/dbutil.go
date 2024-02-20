@@ -26,6 +26,23 @@ func connect() *sql.DB {
 	var config Config
 	json.NewDecoder(file).Decode(&config)
 
+	keys := []string{"DB_HOST", "DB_USER", "DB_PASSWORD", "DB_PORT"}
+	for _, key := range keys {
+		val := os.Getenv(key)
+		if val != "" {
+			switch key {
+			case "DB_HOST":
+				config.Hostname = val
+			case "DB_USER":
+				config.User = val
+			case "DB_PASSWORD":
+				config.Password = val
+			case "DB_PORT":
+				config.Port = val
+			}
+		}
+	}
+
 	connStr := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
 		config.User, config.Password, config.Hostname, config.Port, config.Database)
 

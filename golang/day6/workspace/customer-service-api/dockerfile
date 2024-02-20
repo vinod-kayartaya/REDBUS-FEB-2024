@@ -1,0 +1,23 @@
+FROM golang:alpine as stage1
+WORKDIR /vinod/app
+COPY ./go.mod ./
+COPY ./go.sum ./
+RUN go mod download
+COPY . .
+RUN go build -o main .
+
+FROM alpine
+WORKDIR /vinod/app
+COPY config.json .
+COPY --from=stage1 /vinod/app/main .
+EXPOSE 7788
+CMD [ "/vinod/app/main"]
+
+# to create an image:
+# docker build -t customer-api:latest .
+
+# to run this image as container:
+# docker run -dp 7788:7788 --name customer-service --link mysql8server -e DB_HOST=mysql8server -e DB_PASSWORD=Welcome#123 customer-api:latest
+
+# docker run -dp 7788:7788 --name customer-service -e DB_HOST=178.16.10.68 -e DB_PASSWORD=Welcome#123 customer-api:latest
+

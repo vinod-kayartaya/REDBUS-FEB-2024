@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/yeti/bootstrap.min.css"
+    />
+    <title>Customer Dashboard</title>
+  </head>
+  <body>
+    <div class="alert alert-primary">
+      <div class="container">
+        <h1>Customer Dashboard</h1>
+      </div>
+    </div>
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            Enter customer id to search:
+            <form onsubmit="return findCustomer()">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="customer id"
+                id="customer_id"
+                autofocus
+              />
+            </form>
+          </div>
+        </div>
+        <div>
+          <div>Name: <span id="name"></span></div>
+          <div>City: <span id="city"></span></div>
+          <div>Email: <span id="email"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
