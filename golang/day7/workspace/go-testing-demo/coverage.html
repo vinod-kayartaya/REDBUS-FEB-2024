@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>dateutils: Go Coverage Report</title>
+		<title>service: Go Coverage Report</title>
 		<style>
 			body {
 				background: black;
@@ -55,9 +55,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">myapp/dateutils/dateutils.go (100.0%)</option>
-				
-				<option value="file1">myapp/mathutils/mathutils.go (100.0%)</option>
+				<option value="file0">myapp/service/employee_service.go (70.0%)</option>
 				
 				</select>
 			</div>
@@ -71,55 +69,49 @@
 		</div>
 		<div id="content">
 		
-		<pre class="file" id="file0" style="display: none">package dateutils
+		<pre class="file" id="file0" style="display: none">package service
 
-import "errors"
+import (
+        "myapp/dao"
+        "myapp/model"
+        "strings"
+)
 
-func GetMaxDays(month, year int) (int, error) <span class="cov8" title="1">{
-        if month &lt; 1 </span><span class="cov8" title="1">{
-                return 0, errors.New("month should be &gt;= 1")
-        }</span>
-        <span class="cov8" title="1">if month &gt; 12 </span><span class="cov8" title="1">{
-                return 0, errors.New("month should be &lt;=12")
-        }</span>
-        <span class="cov8" title="1">if year &lt; 1900 </span><span class="cov8" title="1">{
-                return 0, errors.New("year should be &gt;=1900")
-        }</span>
-
-        <span class="cov8" title="1">switch month </span>{
-        case 2:<span class="cov8" title="1">
-                if year%400 == 0 || year%4 == 0 &amp;&amp; year%100 != 0 </span><span class="cov8" title="1">{
-                        return 29, nil
-                }</span> else<span class="cov8" title="1"> {
-                        return 28, nil
-                }</span>
-        case 4, 6, 9, 11:<span class="cov8" title="1">
-                return 30, nil</span>
-        default:<span class="cov8" title="1">
-                return 31, nil</span>
-        }
+type EmployeeService struct {
+        dao dao.EmployeeDao
 }
-</pre>
-		
-		<pre class="file" id="file1" style="display: none">package mathutils
 
-import "errors"
-
-func Factorial(num int) (int, error) <span class="cov8" title="1">{
-        if num &lt; 0 </span><span class="cov8" title="1">{
-                return 0, errors.New("cannot calculate factorial of -ve number")
+func (service EmployeeService) GetEmployee(id int) *model.Employee <span class="cov0" title="0">{
+        if id &lt;= 0 </span><span class="cov0" title="0">{
+                panic("invalid id supplied")</span>
+        }
+        <span class="cov0" title="0">emp, err := service.dao.FindById(id)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil
         }</span>
+        <span class="cov0" title="0">return &amp;emp</span>
+}
 
-        <span class="cov8" title="1">if num == 0 </span><span class="cov8" title="1">{
-                return 1, nil
-        }</span>
-
-        <span class="cov8" title="1">fact := 1
-        for i := 1; i &lt;= num; i++ </span><span class="cov8" title="1">{
-                fact *= i
-        }</span>
-        <span class="cov8" title="1">return fact, nil</span>
-
+func (service EmployeeService) AddNewEmployee(emp model.Employee) model.Employee <span class="cov8" title="1">{
+        emp.Name = strings.TrimSpace(emp.Name)
+        if emp.Name == "" </span><span class="cov8" title="1">{
+                panic("employee name cannot be blank")</span>
+        }
+        <span class="cov8" title="1">if len(emp.Name) &gt; 50 </span><span class="cov8" title="1">{
+                panic("employee name cannot exceed 50 letters")</span>
+        }
+        <span class="cov8" title="1">if emp.Salary &lt; 25000 </span><span class="cov8" title="1">{
+                panic("salary must be &gt;= 25000")</span>
+        }
+        <span class="cov8" title="1">if emp.Salary &gt; 500000 </span><span class="cov8" title="1">{
+                panic("salary must be &lt;= 500000")</span>
+        }
+        <span class="cov8" title="1">newId, err := service.dao.Save(emp)
+        if err != nil </span><span class="cov8" title="1">{
+                panic(err.Error())</span>
+        }
+        <span class="cov8" title="1">emp.Id = newId
+        return emp</span>
 }
 </pre>
 		
