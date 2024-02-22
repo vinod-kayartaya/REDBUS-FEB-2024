@@ -1,4 +1,4 @@
-from mysql.connector  import connect
+from mysql.connector  import connect  # pip install mysql-connector-python
 import json
 
 
