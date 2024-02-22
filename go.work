@@ -1,0 +1,9 @@
+go 1.22.0
+
+use (
+	./golang/day2/redbus-package-demo
+	./golang/day3/workspace/assgnmnt3
+	./golang/day5/workspace
+	./golang/day6/workspace/customer-service-api
+	./golang/day7/workspace/go-testing-demo
+)
