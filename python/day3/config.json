@@ -1,0 +1,7 @@
+{
+  "user": "root",
+  "password": "Welcome#123",
+  "host": "172.16.10.68",
+  "port": "3306",
+  "database": "customersdb"
+}

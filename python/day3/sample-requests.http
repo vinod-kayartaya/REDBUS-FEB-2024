@@ -1,0 +1,42 @@
+GET /customers
+Host: localhost:1234
+Accept: application/json
+
+###
+
+GET /customers/43
+Host: localhost:1234
+Accept: application/json
+
+###
+POST /customers
+Host: localhost:1234
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "city": "Dallas",
+    "email": "jane.doe@xmpl.com"
+}
+###
+PUT /customers/43
+Host: localhost:1234
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "city": "Washington",
+    "email": "jane.doe@xmpl.com"
+}
+###
+PATCH /customers/43
+Host: localhost:1234
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "jane.smith@yahoo.co.uk"
+}
+###
