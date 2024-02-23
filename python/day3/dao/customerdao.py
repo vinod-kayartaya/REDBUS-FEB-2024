@@ -1,6 +1,6 @@
 
 from mysql.connector  import connect  # pip install mysql-connector-python
-from customermodel import Customer
+from model.customermodel import Customer
 import json
 
 def get_connection():
