@@ -1,6 +1,6 @@
 from mysql.connector  import connect  # pip install mysql-connector-python
 import json
-
+import copy
 
 def get_connection():
     try:
@@ -36,9 +36,11 @@ def main():
             break
         elif choice == 1:
             add_new_customer()
+        elif choice == 4:
+            edit_customer()
         elif choice == 6:
             list_all_customers()
-        elif choice in (2, 3, 4, 5):
+        elif choice in (2, 3, 5):
             print("feature not ready yet")
         else:
             print('Invalid value. Retry')
@@ -73,6 +75,47 @@ def list_all_customers():
 def print_rec(rec):
     print('%3d %-25s %-40s %-40s' % rec)
 
+
+def edit_customer():
+    try:
+        cust_id = int(input('Enter customer id to edit: '))
+        sql = 'select name, city, email from CUSTOMERS where id=%s'
+        with get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(sql, (cust_id, ))
+                rec = cur.fetchone()
+                if rec is None:
+                    print(f'no customer data found for id {cust_id}')
+                    return
+                
+                print('Customer data found:')
+                print(f'Name   : {rec[0]}')
+                print(f'City   : {rec[1]}')
+                print(f'Email  : {rec[2]}')
+
+                choice = input('Do you want to edit this? (yes/no) [yes]')
+                if choice.strip() == '':
+                    choice = 'yes'
+                if choice.lower() != 'yes':
+                    return
+                
+                print('Enter customer details to update (press ENTER/RETURN to keep the old value): ')
+                new_name = input(f'Name   : ({rec[0]}) ').strip()
+                if new_name == '':
+                    new_name = rec[0]
+                new_city = input(f'City   : ({rec[1]}) ').strip()
+                if new_city == '':
+                    new_city = rec[1]
+                new_email = input(f'Email  : ({rec[2]}) ').strip()
+                if new_email == '':
+                    new_email = rec[2]
+                
+                sql = 'update CUSTOMERS set name=%s, city=%s, email=%s where id=%s'
+                cur.execute(sql, (new_name, new_city, new_email, cust_id))
+                conn.commit()
+                print('Customer data updated successfully')
+    except ValueError:
+        print('Invalid value for id. Retry.')
 
 if __name__ == '__main__':
     main()
