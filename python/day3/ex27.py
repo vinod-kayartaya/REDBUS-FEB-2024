@@ -8,19 +8,11 @@ app = Flask('customer-api')  # generally used name is __name__
 
 @app.route('/')
 def home():
-    return """
-    <h1>Welcome to customer rest endpoint</h1>
-    <hr>
-    <p>Created by Vinod, powered by <em>Flask</em></p>
-    <p>Following operations are available:</p>
-    <ul>
-        <li>GET --> http://localhost:1234/customers</li>
-        <li>GET --> http://localhost:1234/customers/{id}</li>
-        <li>POST --> http://localhost:1234/customers (with JSON payload)</li>
-        <li>PATCH --> http://localhost:1234/customers/{id} (with JSON payload)</li>
-    </ul>
-    """
-
+    try:
+        with open('ex27_home.html') as file:
+            return file.read()
+    except FileNotFoundError:
+        return '/customers'
 
 def create_response(data=None, status=200, mimetype='application/json'):
     return Response(json.dumps(data, cls=Customer.CustomerEncoder), status=status, mimetype=mimetype)
