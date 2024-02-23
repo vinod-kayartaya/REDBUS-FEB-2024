@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>customers api</title>
+  </head>
+  <body>
+    <h1>Welcome to customer rest endpoint</h1>
+    <hr />
+    <p>Created by Vinod, powered by <em>Flask</em></p>
+    <p>Following operations are available:</p>
+    <ul>
+      <li>
+        GET --> http://localhost:1234/customers
+        <pre>
+GET /customers
+Host: localhost:1234
+Accept: application/json        
+        </pre>
+      </li>
+      <li>
+        GET --> http://localhost:1234/customers/{id}
+        <pre>
+GET /customers/43
+Host: localhost:1234
+Accept: application/json       
+        </pre>
+      </li>
+      <li>
+        POST --> http://localhost:1234/customers (with JSON payload)
+        <pre>
+POST /customers
+Host: localhost:1234
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "city": "Dallas",
+    "email": "jane.doe@xmpl.com"
+}        
+        </pre>
+      </li>
+      <li>
+        PATCH --> http://localhost:1234/customers/{id} (with JSON payload)
+        <pre>
+PATCH /customers/43
+Host: localhost:1234
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "jane.smith@yahoo.co.uk"
+}       
+        </pre>
+      </li>
+    </ul>
+  </body>
+</html>
